@@ -208,6 +208,24 @@ ldap:
    enabled: false
    # The URL of the LDAP server
    url: ldap://<adminDN>:<adminPassword>@<host>:<port>/<base>
+   # Attribute related configuration
+   attribute:
+      # 'names' is an array of strings containing the attribute names which are
+      # requested from the LDAP server is queried to login in a user.
+      names: ['uid']
+      # 'converters' section are used to convert an LDAP attribute to a
+      # fabric CA attribute.
+      # For example, the following converts an LDAP 'uid' attribute
+      # whose value begins with 'revoker' to a fabric CA attribute
+      # named "hf.Revoker" with a value of "true" (because the boolean expression
+      # evaluates to true).
+      #    converters:
+      #       - name: hf.Revoker
+      #         value: attr("uid") =~ "revoker*"
+      converters:
+         - name:
+           value:
+   # TLS configuration for the client connection to the LDAP server
    tls:
       certfiles:
         - ldap-server-cert.pem

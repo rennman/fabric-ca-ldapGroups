@@ -104,6 +104,7 @@ func UnmarshalConfig(config interface{}, vp *viper.Viper, configFile string, ser
 		sliceFields := []string{
 			"csr.hosts",
 			"tls.clientauth.certfiles",
+			"ldap.attribute.names",
 			"ldap.tls.certfiles",
 			"db.tls.certfiles",
 			"cafiles",

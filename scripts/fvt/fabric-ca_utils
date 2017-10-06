@@ -404,7 +404,6 @@ reenroll() {
    return $RC
 }
 
-
 register() {
    local REGISTRAR="$1"
    : ${REGISTRAR:="admin"}
@@ -793,6 +792,13 @@ $registry
 ldap:
   enabled: $LDAP_ENABLE
   url: ${LDAP_PROTO}CN=admin,dc=example,dc=com:adminpw@localhost:$LDAP_PORT/dc=example,dc=com
+  attribute:
+    names: ["uid"]
+    converters:
+      - name: hf.Revoker
+        value: attr("uid") =~ "revoker*"
+      - name: hf.Registrar.Roles
+        value: if( attr("uid") =~ "revoker*", "client", "")
   tls:
     certfiles:
       - $TLS_ROOTCERT
