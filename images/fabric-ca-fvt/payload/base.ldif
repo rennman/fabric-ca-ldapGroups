@@ -17,3 +17,7 @@ dn: ou=users,ou=fabric,dc=hyperledeger,dc=example,dc=com
 objectClass: top
 objectClass: OrganizationalUnit
 ou: users
+
+dn: ou=groups,dc=example,dc=com
+objectclass: OrganizationalUnit
+ou: groups
